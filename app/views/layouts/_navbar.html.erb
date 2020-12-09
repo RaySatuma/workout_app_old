@@ -7,10 +7,16 @@
     
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
+      <% if logged_in? %>
         <li class="nav-item"><a href="#" class="nav-link">メニュー</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">ログイン</a></li>
-        <li class="nav-item"><%= link_to '会員登録', users_new_path, class: 'nav-link'  %></li>
+        <li class="nav-item"><%= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link' %></li>
+        
+      <% else %>
+        <li class="nav-item"><a href="#" class="nav-link">メニュー</a></li>
+        <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to '会員登録', signup_path, class: 'nav-link'  %></li>
       </ul>
+      <% end %>  
     </div>
   </nav>
 </header>
