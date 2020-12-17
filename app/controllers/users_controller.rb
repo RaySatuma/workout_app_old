@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.id
+    @user = User.find(params[:id])
+    @posts = @user.posts.order(id: :desc).page(params[:page])
+      if logged_in?
+       @post = current_user.posts.build  # form_with 用
+      end
   end
 
   def new
@@ -15,7 +19,7 @@ class UsersController < ApplicationController
     
     if @user.save
       flash[:success] = 'ユーザーを登録しました。'
-      redirect_to root_path
+      redirect_to root_url
     else
       flash[:danger] = 'ユーザー登録が正常にできませんでした。'
       render :new

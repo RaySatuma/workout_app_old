@@ -1,2 +1,7 @@
 <div class="main-container">
 </div>
+<ol>
+  <% @user.each do |user| %>
+  <li><%= user.name %> :<%= user.email %></li>
+  <% end %>
+</ol>
